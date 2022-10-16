@@ -3,7 +3,7 @@ const router = require("express").Router();
 // load file system for read/write functions
 const fs = require("fs");
 // link db.json for saved notes
-const db = require("./../dbdb.json");
+const db = require("C:UsersJorgeDesktopprojects\bootcamp\bootcampchallengesNoteTaker11dbdb.json");
 // load uuid for unique IDs
 const { v4: uuidv4 } = require("uuid");
 
@@ -34,3 +34,65 @@ router.post("/notes", (req, res) => {
     }
   });
 });
+
+// delete a note
+router.delete("/notes/:id", (req, res) => {
+  // receive query param of id
+  const deleteID = req.params.id;
+
+  // read db.json to get saved notes array
+  return (
+    new Promise((resolve, reject) => {
+      fs.readFile("db/db.json", "utf8", (err, data) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+
+        // parse db.json into savedNotes array
+        const savedNotes = JSON.parse(data);
+        // filter out note with delete id and save as newSavedNotes array
+        let newSavedNotes = savedNotes.filter((note) => note.id != deleteID);
+
+        // get title of deleted note
+        const deletedNote = savedNotes.filter((note) => note.id == deleteID);
+        const deletedTitle = deletedNote[0].title;
+
+        resolve({
+          ok: true,
+          deletedTitle: deletedTitle,
+          newSavedNotes: newSavedNotes,
+        });
+      });
+    })
+      // write new db.json file without deleted note
+      .then((response) => {
+        if (response.ok) {
+          fs.writeFile(
+            "db/db.json",
+            JSON.stringify(response.newSavedNotes),
+            (err) => {
+              if (err) {
+                console.error(err);
+              }
+
+              console.log(`note '${response.deletedTitle}' deleted`);
+            }
+          );
+
+          // creat object to hold notes array
+          let newNotesObj = {
+            notes: response.newSavedNotes,
+          };
+
+          return newNotesObj;
+        }
+      })
+      .then((newNotesObj) => {
+        res.json(newNotesObj);
+      })
+      .catch((err) => console.error(err))
+  );
+});
+
+module.exports = router;
