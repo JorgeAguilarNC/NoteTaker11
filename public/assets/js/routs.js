@@ -3,7 +3,7 @@ const router = require("express").Router();
 // load file system for read/write functions
 const fs = require("fs");
 // link db.json for saved notes
-const db = require("C:UsersJorgeDesktopprojects\bootcamp\bootcampchallengesNoteTaker11dbdb.json");
+const db = require("./../db/db.json");
 // load uuid for unique IDs
 const { v4: uuidv4 } = require("uuid");
 
