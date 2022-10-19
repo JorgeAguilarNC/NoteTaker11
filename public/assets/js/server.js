@@ -8,16 +8,16 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 // load routes
-const apiRoutes = require("../public/assets/js/routs");
-const htmlRoutes = require("./public/assets/js/routs");
+const apiRoutes = require(`./routs/apiRoutes.js`);
+const htmlRoutes = require(`./routs/htmlroutes.js`);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
 // indicate which route to use on URLs
-app.use("/api", apiRoutes);
-app.use("/", htmlRoutes);
+app.use(`/api`, apiRoutes);
+app.use(`/`, htmlRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
