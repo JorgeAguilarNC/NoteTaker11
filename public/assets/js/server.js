@@ -10,12 +10,11 @@ const app = express();
 // load routes
 const apiRoutes = require(`./apiRouts`);
 const htmlRoutes = require(`./html`);
-
+//middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-// indicate which route to use on URLs
 app.use(`/api`, apiRoutes);
 app.use(`/`, htmlRoutes);
 
