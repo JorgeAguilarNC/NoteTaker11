@@ -9,6 +9,9 @@ SO THAT I can organize my thoughts and keep track of tasks I need to complete.
 GitHub code profile link
 https://github.com/JorgeAguilarNC/NoteTaker11
 
+Heroku deployed link
+https://git.heroku.com/peaceful-river-97691.git
+
 ## Technologies used
 
 Json
