@@ -66,7 +66,8 @@ const renderActiveNote = () => {
   }
 };
 
-const handleNoteSave = () => {
+const handleNoteSave = (e) => {
+  e.preventDefault();
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,
@@ -115,7 +116,9 @@ const handleNewNoteView = (e) => {
   renderActiveNote();
 };
 
-const handleRenderSaveBtn = () => {
+const handleRenderSaveBtn = (e) => {
+  e.preventDefault();
+
   if (!noteTitle.value.trim() || !noteText.value.trim()) {
     hide(saveNoteBtn);
   } else {
