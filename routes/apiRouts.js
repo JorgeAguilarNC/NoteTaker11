@@ -24,7 +24,7 @@ router.post(`notes`, (req, res) => {
   savedNotes.push(newNote);
   // push new saved notes array to db.json
   savedNotes = JSON.stringify(savedNotes);
-  fs.writeFile("db/db.json", savedNotes, (err) => {
+  fs.writeFile('../db/db.json', savedNotes, (err) => {
     if (err) {
       console.error(err);
     } else {
