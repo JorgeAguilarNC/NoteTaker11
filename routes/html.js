@@ -1,5 +1,7 @@
 const path = require("path");
-const router = require("exspress").router();
+const express = require('express')
+const router = express()
+//const router = require("express").router();
 // bo to home page
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname`../../public/index.html`));

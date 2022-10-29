@@ -8,8 +8,8 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 // load routes
-const apiRoutes = require(`./apiRouts`);
-const htmlRoutes = require(`./html`);
+const apiRoutes = require(`./routes/apiRouts`);
+const htmlRoutes = require(`./routes/html`);
 //middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

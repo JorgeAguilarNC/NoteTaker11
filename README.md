@@ -10,10 +10,13 @@ GitHub code profile link
 https://github.com/JorgeAguilarNC/NoteTaker11
 
 Heroku deployed link
-https://git.heroku.com/peaceful-river-97691.git
+peaceful-river-97691.herokuapp.com.
 
 heroku to code link
 https://dashboard.heroku.com/apps/peaceful-river-97691
+
+link to video
+https://drive.google.com/file/d/1n1In0Fn9Ij1fmJ3KoVHYHpRlhfJMrpPZ/view
 
 ## Technologies used
 
@@ -23,3 +26,6 @@ CSS
 Javascript
 NPM
 Heroku
+
+
+ctrl+c stop server
