@@ -27,5 +27,6 @@ Javascript
 NPM
 Heroku
 
-
+nodemon server.js
 ctrl+c stop server
+http://localhost:3001/notes

@@ -13,7 +13,7 @@ const htmlRoutes = require(`./routes/html`);
 //middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static("public/assets"));
 
 app.use(`/api`, apiRoutes);
 app.use(`/`, htmlRoutes);

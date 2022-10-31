@@ -7,16 +7,34 @@ const db = require(`../db/db.json`);
 console.log(db)
 // load uuid for unique IDs
 const { v4: uuidv4 } = require(`uuid`);
+const { resolve } = require("path");
 
 // get existing notes
 router.get(`/notes`, (req, res) => {
   console.log(db, 'in get')
   // read db.json to get the saved notes
-  res.json(db);
+  return (
+    new Promise((resolve, reject) => {
+      fs.readFile('db/db.json', "utf8", (err, data) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+
+        resolve(
+         JSON.parse(data),
+        );
+      });
+    })
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => console.error(err))
+  );
 });
 
 // add a note
-router.post(`notes`, (req, res) => {
+router.post(`/notes`, (req, res) => {
   console.log('in post')
   // receive new note from request body
   let newNote = req.body;
@@ -29,7 +47,7 @@ router.post(`notes`, (req, res) => {
   // push new saved notes array to db.json
   savedNotes = JSON.stringify(savedNotes);
   console.log (savedNotes);
-  fs.writeFile(db, savedNotes, (err) => {
+  fs.writeFile('db/db.json', savedNotes, (err) => {
     if (err) {
       console.error(err);
     } else {
@@ -42,17 +60,20 @@ router.post(`notes`, (req, res) => {
 
 // delete a note
 router.delete("/notes/:id", (req, res) => {
+  console.log('in delete')
   // receive query param of id
   const deleteID = req.params.id;
+  console.log('id', deleteID)
 
   // read db.json to get saved notes array
   return (
     new Promise((resolve, reject) => {
-      fs.readFile(db, "utf8", (err, data) => {
+      fs.readFile('db/db.json', "utf8", (err, data) => {
         if (err) {
           reject(err);
           return;
         }
+
 
         // parse db.json into savedNotes array
         const savedNotes = JSON.parse(data);
@@ -74,7 +95,7 @@ router.delete("/notes/:id", (req, res) => {
       .then((response) => {
         if (response.ok) {
           fs.writeFile(
-            db,
+            'db/db.json',
             JSON.stringify(response.newSavedNotes),
             (err) => {
               if (err) {
