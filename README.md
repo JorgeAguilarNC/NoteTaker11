@@ -15,8 +15,10 @@ peaceful-river-97691.herokuapp.com.
 heroku to code link
 https://dashboard.heroku.com/apps/peaceful-river-97691
 
-link to video
-https://drive.google.com/file/d/1n1In0Fn9Ij1fmJ3KoVHYHpRlhfJMrpPZ/view
+link to video updated
+https://drive.google.com/file/d/1NQ2BEh9x9N_loonJYsojKY-8EwuaxkKb/view
+
+
 
 ## Technologies used
 
