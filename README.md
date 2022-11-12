@@ -8,9 +8,11 @@ SO THAT I can organize my thoughts and keep track of tasks I need to complete.
 
 GitHub code profile link
 https://github.com/JorgeAguilarNC/NoteTaker11
+heroku code link
+To https://git.heroku.com/peaceful-river-97691.git
 
 Heroku deployed link
-peaceful-river-97691.herokuapp.com.
+https://peaceful-river-97691.herokuapp.com/
 
 heroku to code link
 https://dashboard.heroku.com/apps/peaceful-river-97691
@@ -28,7 +30,3 @@ CSS
 Javascript
 NPM
 Heroku
-
-nodemon server.js
-ctrl+c stop server
-http://localhost:3001/notes

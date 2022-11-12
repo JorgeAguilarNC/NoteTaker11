@@ -1,19 +1,19 @@
 // load express and router
-const router = require(`express`).Router();
+var router = require(`express`).Router();
 // load file system for read/write functions
-const fs = require(`fs`);
+var fs = require(`fs`);
 // link db.json for saved notes
-const db = require(`../db/db.json`);
+var db = require(`../db/db.json`);
 console.log(db)
 // load uuid for unique IDs
-const { v4: uuidv4 } = require(`uuid`);
-const { resolve } = require("path");
+var { v4: uuidv4 } = require(`uuid`);
+var { resolve } = require("path");
 
 // get existing notes
 router.get(`/notes`, (req, res) => {
   console.log(db, 'in get')
   // read db.json to get the saved notes
-  return (
+  return readFile(
     new Promise((resolve, reject) => {
       fs.readFile('db/db.json', "utf8", (err, data) => {
         if (err) {
@@ -42,12 +42,12 @@ router.post(`/notes`, (req, res) => {
   console.log (newNote);
   newNote.id = uuidv4();
   // add new note to saved notes
-  let savedNotes = db;
-  savedNotes.push(newNote);
+  let getnotes = db;
+  getnotes.push(newNote);
   // push new saved notes array to db.json
-  savedNotes = JSON.stringify(savedNotes);
-  console.log (savedNotes);
-  fs.writeFile('db/db.json', savedNotes, (err) => {
+  getnotes = JSON.stringify(getnotes);
+  console.log (getnotes);
+  fs.writeFile('db/db.json', getnotes, (err) => {
     if (err) {
       console.error(err);
     } else {
@@ -59,30 +59,30 @@ router.post(`/notes`, (req, res) => {
 });
 
 // delete a note
-router.delete("/notes/:id", (req, res) => {
+router.delete('/notes/:id', async(req,res) => {
   console.log('in delete')
   // receive query param of id
-  const deleteID = req.params.id;
+  var deleteID = req.params.id;
   console.log('id', deleteID)
 
   // read db.json to get saved notes array
   return (
     new Promise((resolve, reject) => {
-      fs.readFile('db/db.json', "utf8", (err, data) => {
+      fs.writeFile('db/db.json', "utf8", (err, data) => {
         if (err) {
           reject(err);
           return;
         }
 
 
-        // parse db.json into savedNotes array
-        const savedNotes = JSON.parse(data);
+        // parse db.json into getnotes array
+        var getnotes = JSON.parse(data);
         // filter out note with delete id and save as newSavedNotes array
-        let newSavedNotes = savedNotes.filter((note) => note.id != deleteID);
+        let newSavedNotes = getnotes.filter((note) => note.id != deleteID);
 
         // get title of deleted note
-        const deletedNote = savedNotes.filter((note) => note.id == deleteID);
-        const deletedTitle = deletedNote[0].title;
+        var deletedNote = getnotes.filter((note) => note.id == deleteID);
+        var deletedTitle = deletedNote[0].title;
 
         resolve({
           ok: true,

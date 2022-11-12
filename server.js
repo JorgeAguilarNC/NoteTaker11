@@ -1,15 +1,15 @@
 // load express
-const express = require("express");
+var express = require("express");
 
 // set port
-const PORT = process.env.PORT || 3001;
+var PORT = process.env.PORT || 3001;
 
 // set express instance to variable
-const app = express();
+var app = express();
 
 // load routes
-const apiRoutes = require(`./routes/apiRouts`);
-const htmlRoutes = require(`./routes/html`);
+var apiRoutes = require(`./routes/apiRouts`);
+var htmlRoutes = require(`./routes/html`);
 //middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
